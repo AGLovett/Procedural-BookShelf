@@ -10,6 +10,22 @@ class BookshelfGen:
         height = params['height']
         depth = params['shelf_depth']
         num_shelves = params['num_shelves']
+
+
+        frame_group = cmds.group(empty=True, name="shelf_frame")
+
+        left_side = cmds.polyCube(width=.02, height=height, depth=depth,
+                                  name="shelf_left_side"[0])
+        right_side = cmds.polyCube(width=.02, height=height, depth=depth,
+                                  name="shelf_right_side"[0])
+        
+        left_x = -width/2 + 0.1
+        right_x = -width/2 + 0.1
+        cmds.move(left_x, height/2, 0, left_side)
+        cmds.move(right_x_x, height/2, 0, right_side)
+
+        cmds.parent(left_side, frame_group)
+        cmds.parent(right_side, frame_group)
    
 
 
