@@ -3,7 +3,19 @@ import random
 import math 
 from Pyside import Qtcore 
 
+
 class BookshelfGen:
+
+    # wood colors 
+    def materials(self):
+        wood_types = ['oak', 'mahogany', 'birch', 'walnut']
+        for wood in wood_types:
+            mat_name = f"wood_{wood}"
+            if not cmds.objExists(mat_name):
+                shader = cmds.shadingNode('blinn', asShader=True,
+                                          name=mat_name)
+
+
 
     def create_shelf(self, params):
         width = params['width']
@@ -17,7 +29,7 @@ class BookshelfGen:
         left_side = cmds.polyCube(width=.02, height=height, depth=depth,
                                   name="shelf_left_side"[0])
         right_side = cmds.polyCube(width=.02, height=height, depth=depth,
-                                  name="shelf_right_side"[0])
+                                   name="shelf_right_side"[0])
         # sides
         left_x = -width/2 + 0.1
         right_x = -width/2 + 0.1
@@ -31,7 +43,7 @@ class BookshelfGen:
         top = cmds.polyCube(width=width, height=0.2,
                             depth=depth, name="shelf_top")[0]
         bottom = cmds.polyCube(width=width, height=0.2,
-                            depth=depth, name="shelf_bottom")[0]
+                               depth=depth, name="shelf_bottom")[0]
         
         cmds.move(0, height - 0.1, 0, top)
         cmds.move(0, 0.1, 0, bottom)
@@ -43,11 +55,13 @@ class BookshelfGen:
 
         shelf_spacing = height / num_shelves
         for i in range(1, num_shelves):
-            shelf = cmds.polyCube=(width=width -0.2, height=0.1, depth=depth - 0.1,
-                                   name=f"shelf_{i}")[0]
+            shelf = cmds.polyCube(width=width - 0.2, height=0.1, 
+                                  depth=depth - 0.1, name=f"shelf_{i}")[0]
             shelf_y = i * shelf_spacing
             cmds.parent(shelf, frame_group)
 
+        # wood color 
+        wood_type = params
     
    
 
