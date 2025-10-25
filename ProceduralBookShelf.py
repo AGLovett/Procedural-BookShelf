@@ -29,9 +29,9 @@ class BookshelfGen:
 
         # top/bottom
         top = cmds.polyCube(width=width, height=0.2,
-                            depth=depth, name= "shelf_top")[0]
+                            depth=depth, name="shelf_top")[0]
         bottom = cmds.polyCube(width=width, height=0.2,
-                            depth=depth, name= "shelf_bottom")[0]
+                            depth=depth, name="shelf_bottom")[0]
         
         cmds.move(0, height - 0.1, 0, top)
         cmds.move(0, 0.1, 0, bottom)
