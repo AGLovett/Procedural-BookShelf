@@ -14,7 +14,24 @@ class BookshelfGen:
             if not cmds.objExists(mat_name):
                 shader = cmds.shadingNode('blinn', asShader=True,
                                           name=mat_name)
+                # wood colors
+                if wood == 'oak':
+                    base_color = (0.7, 0.5, 0.3)
+                elif wood == 'mahogany':
+                    base_color = (0.5, 0.2, 0.1)
+                elif wood == 'birch':
+                    base_color = (0.4, 0.4, 0.3)
+                else:
+                    base_color = (0.4, 0.3, 0.2)
 
+                    cmds.setAttr(f'{shader}.color',*base_color, type='double3')
+                    cmds.setAttr(f'{shader}.specularColor',0.3, 0.3, 0.3, type='double3')
+                    cmds.setAttr(f'{shader}.eccentricity', 0.4)
+                    cmds.setAttr(f'{shader}.reflectivity', 0.1)
+
+                    self.wood_materials[wood] = shader
+
+                self.created_materials = True
 
 
     def create_shelf(self, params):
@@ -51,7 +68,7 @@ class BookshelfGen:
         cmds.parent(top, frame_group)
         cmds.parent(bottom, frame_group)
 
-        #shelves
+        # shelves
 
         shelf_spacing = height / num_shelves
         for i in range(1, num_shelves):
@@ -62,9 +79,6 @@ class BookshelfGen:
 
         # wood color 
         wood_type = params
-    
-   
-
 
 # make a group for whole shelf
 # make the shelf 
