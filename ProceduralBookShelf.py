@@ -38,6 +38,16 @@ class BookshelfGen:
 
         cmds.parent(top, frame_group)
         cmds.parent(bottom, frame_group)
+
+        #shelves
+
+        shelf_spacing = height / num_shelves
+        for i in range(1, num_shelves):
+            shelf = cmds.polyCube=(width=width -0.2, height=0.1, depth=depth - 0.1,
+                                   name=f"shelf_{i}")[0]
+            shelf_y = i * shelf_spacing
+            cmds.parent(shelf, frame_group)
+
     
    
 
