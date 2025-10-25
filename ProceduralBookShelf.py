@@ -1,7 +1,7 @@
 import maya.cmds as cmds
 import random
 import math 
-from Pyside import Qtcore 
+from PySide2 import Qtcore 
 
 
 class BookshelfGen:
