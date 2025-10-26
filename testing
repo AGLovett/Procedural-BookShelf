@@ -1,0 +1,5 @@
+# test to try generating bookshelf
+import maya.cmds as cmds
+import random
+
+def
